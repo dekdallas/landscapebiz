@@ -1,0 +1,851 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fractal Fern Landscape & Design — Kelowna, BC</title>
+  <meta name="description" content="Professional landscaping, lawn care, and yard design serving Kelowna and the Okanagan since 2015. Affordable pricing, premium results. Call (236) 700-6294." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'fern-deep':  '#1D3A2A',
+            'fern-base':  '#2E6B4F',
+            'fern-sage':  '#5A9B77',
+            'fern-mist':  '#C4DDD0',
+            'soil':       '#7A5C40',
+            'parchment':  '#F5F0E8',
+            'bark':       '#1A1A17',
+            'stone':      '#2C2C2A',
+            'ash':        '#6B6B68',
+            'cream':      '#FAFAF8',
+            'star-gold':  '#C8913A',
+          },
+          fontFamily: {
+            display: ['"Playfair Display"', 'Georgia', 'serif'],
+            sans:    ['"DM Sans"', 'system-ui', 'sans-serif'],
+          },
+        },
+      },
+    };
+  </script>
+  <style>
+    html { scroll-behavior: smooth; }
+    body { font-family: 'DM Sans', system-ui, sans-serif; background: #FAFAF8; color: #2C2C2A; }
+    .font-display { font-family: 'Playfair Display', Georgia, serif; }
+
+    /* Grain texture overlay */
+    .grain::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    /* Card shadow system */
+    .shadow-card { box-shadow: 0 2px 4px rgba(29,58,42,0.06), 0 8px 24px rgba(29,58,42,0.12); }
+    .shadow-card-hover { box-shadow: 0 4px 8px rgba(29,58,42,0.10), 0 16px 40px rgba(29,58,42,0.18); }
+    .shadow-float { box-shadow: 0 4px 8px rgba(29,58,42,0.10), 0 16px 40px rgba(29,58,42,0.18); }
+
+    /* Scroll animations */
+    .fade-up { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+    /* Nav transition */
+    #nav-bar { transition: background-color 0.3s ease, box-shadow 0.3s ease; }
+
+    /* Service card hover border */
+    .service-card { border-left: 4px solid transparent; transition: border-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease; }
+    .service-card:hover { border-left-color: #5A9B77; transform: translateY(-4px); }
+    .service-card:hover { box-shadow: 0 4px 8px rgba(29,58,42,0.10), 0 16px 40px rgba(29,58,42,0.18); }
+
+    /* Gallery hover */
+    .gallery-item { break-inside: avoid; margin-bottom: 1rem; }
+    .gallery-item .overlay { opacity: 0; transition: opacity 0.3s ease; }
+    .gallery-item:hover .overlay { opacity: 1; }
+
+    /* Mobile nav */
+    #mobile-menu { max-height: 0; overflow: hidden; transition: max-height 0.35s ease; }
+    #mobile-menu.open { max-height: 400px; }
+
+    /* Focus ring */
+    *:focus-visible { outline: 2px solid #5A9B77; outline-offset: 3px; border-radius: 4px; }
+
+    /* Scroll chevron pulse */
+    @keyframes bounce-slow {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(8px); }
+    }
+    .bounce-slow { animation: bounce-slow 2s ease-in-out infinite; }
+
+    /* Hamburger transition */
+    .hamburger-line { transition: transform 0.25s ease, opacity 0.25s ease; }
+  </style>
+</head>
+<body class="antialiased">
+
+<!-- ═══════════════════════════════════════════
+     NAVIGATION
+═══════════════════════════════════════════ -->
+<header id="nav-bar" class="fixed top-0 left-0 right-0 z-50 bg-fern-deep">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-16 md:h-20">
+
+      <!-- Logo -->
+      <a href="#" class="flex items-center gap-2.5 group" aria-label="Fractal Fern Landscape & Design home">
+        <!-- Inline SVG fern leaf -->
+        <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M14 26C14 26 6 18 6 11C6 7.13 9.13 4 13 4C14 4 14 4 14 4C14 4 14 4 15 4C18.87 4 22 7.13 22 11C22 18 14 26 14 26Z" fill="#5A9B77" opacity="0.3"/>
+          <path d="M14 26V8M14 14C14 14 10 11 8 8M14 18C14 18 18 15 20 12" stroke="#5A9B77" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+        <span class="font-display text-cream text-lg md:text-xl font-semibold tracking-tight group-hover:text-fern-mist transition-colors duration-200">Fractal Fern</span>
+      </a>
+
+      <!-- Desktop Nav Links -->
+      <nav class="hidden md:flex items-center gap-8" aria-label="Main navigation">
+        <a href="#services" class="text-fern-mist hover:text-cream text-sm font-medium transition-colors duration-200">Services</a>
+        <a href="#about" class="text-fern-mist hover:text-cream text-sm font-medium transition-colors duration-200">About</a>
+        <a href="#areas" class="text-fern-mist hover:text-cream text-sm font-medium transition-colors duration-200">Areas</a>
+        <a href="#reviews" class="text-fern-mist hover:text-cream text-sm font-medium transition-colors duration-200">Reviews</a>
+        <a href="#contact" class="text-fern-mist hover:text-cream text-sm font-medium transition-colors duration-200">Contact</a>
+      </nav>
+
+      <!-- Desktop CTA -->
+      <div class="hidden md:flex items-center gap-4">
+        <a href="tel:2367006294" class="text-fern-sage hover:text-cream text-sm font-medium transition-colors duration-200">(236) 700-6294</a>
+        <a href="#contact" class="inline-flex items-center justify-center min-h-[44px] px-5 py-2 bg-fern-sage text-fern-deep text-sm font-medium rounded-lg hover:bg-cream transition-colors duration-200" style="box-shadow: 0 4px 8px rgba(29,58,42,0.25);">
+          Get a Quote
+        </a>
+      </div>
+
+      <!-- Mobile Hamburger -->
+      <button id="hamburger" aria-expanded="false" aria-controls="mobile-menu" aria-label="Open navigation menu" class="md:hidden flex flex-col justify-center items-center w-10 h-10 gap-1.5">
+        <span class="hamburger-line block w-6 h-0.5 bg-cream" id="hb-1"></span>
+        <span class="hamburger-line block w-6 h-0.5 bg-cream" id="hb-2"></span>
+        <span class="hamburger-line block w-6 h-0.5 bg-cream" id="hb-3"></span>
+      </button>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" role="navigation" aria-label="Mobile navigation">
+      <div class="pb-4 flex flex-col gap-1 border-t border-fern-base/40 pt-3">
+        <a href="#services" class="mobile-nav-link block px-3 py-3 text-fern-mist hover:text-cream hover:bg-fern-base/20 rounded-lg text-sm font-medium transition-colors duration-200">Services</a>
+        <a href="#about" class="mobile-nav-link block px-3 py-3 text-fern-mist hover:text-cream hover:bg-fern-base/20 rounded-lg text-sm font-medium transition-colors duration-200">About</a>
+        <a href="#areas" class="mobile-nav-link block px-3 py-3 text-fern-mist hover:text-cream hover:bg-fern-base/20 rounded-lg text-sm font-medium transition-colors duration-200">Areas</a>
+        <a href="#reviews" class="mobile-nav-link block px-3 py-3 text-fern-mist hover:text-cream hover:bg-fern-base/20 rounded-lg text-sm font-medium transition-colors duration-200">Reviews</a>
+        <a href="#contact" class="mobile-nav-link block px-3 py-3 text-fern-mist hover:text-cream hover:bg-fern-base/20 rounded-lg text-sm font-medium transition-colors duration-200">Contact</a>
+        <div class="mt-2 pt-3 border-t border-fern-base/40 flex flex-col gap-2">
+          <a href="tel:2367006294" class="block px-3 py-2 text-fern-sage text-sm font-medium">(236) 700-6294</a>
+          <a href="#contact" class="mobile-nav-link inline-flex items-center justify-center min-h-[44px] px-5 py-2 bg-fern-sage text-fern-deep text-sm font-medium rounded-lg">
+            Get a Quote
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+
+<!-- ═══════════════════════════════════════════
+     HERO
+═══════════════════════════════════════════ -->
+<section id="hero" class="relative min-h-screen flex items-center overflow-hidden grain" style="background-color: #1D3A2A; background-image: url('brand_assets/619527189_122099609481229836_5708369663393680632_n.jpg'); background-size: cover; background-position: center;">
+  <!-- Gradient overlay -->
+  <div class="absolute inset-0 z-0" style="background: linear-gradient(135deg, rgba(29,58,42,0.90) 0%, rgba(46,107,79,0.60) 60%, rgba(29,58,42,0.40) 100%);"></div>
+
+  <!-- Content -->
+  <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32 md:py-40 w-full">
+    <div class="max-w-2xl">
+      <!-- Eyebrow -->
+      <div class="inline-flex items-center gap-2 mb-6">
+        <span class="w-6 h-px bg-fern-sage"></span>
+        <span class="text-fern-mist text-sm font-medium tracking-widest uppercase">Licensed &amp; Insured — Kelowna, BC</span>
+      </div>
+
+      <!-- H1 -->
+      <h1 class="font-display text-4xl sm:text-5xl lg:text-6xl font-bold text-cream leading-tight mb-6" style="letter-spacing: -0.03em;">
+        Transform Your Outdoors Without Breaking the Bank
+      </h1>
+
+      <!-- Body -->
+      <p class="text-fern-mist text-lg md:text-xl leading-relaxed mb-10 max-w-xl">
+        Professional landscaping, lawn care, and yard design serving Kelowna and the Okanagan since 2015.
+      </p>
+
+      <!-- CTAs -->
+      <div class="flex flex-col sm:flex-row gap-4">
+        <a href="#contact" class="inline-flex items-center justify-center min-h-[52px] px-8 py-3 bg-fern-sage text-fern-deep font-medium rounded-lg text-base hover:bg-cream hover:-translate-y-0.5 duration-200" style="box-shadow: 0 4px 8px rgba(29,58,42,0.25), 0 16px 40px rgba(29,58,42,0.20); transition: background-color 0.2s ease, transform 0.2s ease;">
+          Get Your Free Quote
+        </a>
+        <a href="#gallery" class="inline-flex items-center justify-center min-h-[52px] px-8 py-3 border border-fern-mist/60 text-fern-mist font-medium rounded-lg text-base hover:border-cream hover:text-cream transition-colors duration-200">
+          See Our Work
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scroll chevron -->
+  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 z-10">
+    <a href="#trust" aria-label="Scroll down" class="bounce-slow block text-fern-mist/60 hover:text-fern-mist transition-colors duration-200">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <polyline points="6 9 12 15 18 9"></polyline>
+      </svg>
+    </a>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════
+     TRUST BAR
+═══════════════════════════════════════════ -->
+<section id="trust" class="bg-parchment border-y border-fern-mist/40 py-8">
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex flex-col sm:flex-row items-center justify-center gap-8 sm:gap-12 lg:gap-16">
+
+      <!-- 5-Star -->
+      <div class="flex items-center gap-3">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="#C8913A" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14 2 9.27l6.91-1.01L12 2z"/>
+        </svg>
+        <div>
+          <div class="font-display text-fern-deep font-bold text-lg leading-none">5.0 Stars</div>
+          <div class="text-ash text-xs mt-0.5">5-Star Rated on Google</div>
+        </div>
+      </div>
+
+      <!-- Divider -->
+      <div class="hidden sm:block w-px h-10 bg-fern-mist"></div>
+
+      <!-- Licensed & Insured -->
+      <div class="flex items-center gap-3">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M12 2L4 6v6c0 5.25 3.5 10.15 8 11.37C16.5 22.15 20 17.25 20 12V6l-8-4z" fill="#5A9B77" opacity="0.2"/>
+          <path d="M12 2L4 6v6c0 5.25 3.5 10.15 8 11.37C16.5 22.15 20 17.25 20 12V6l-8-4z" stroke="#5A9B77" stroke-width="1.5" stroke-linejoin="round"/>
+          <polyline points="9 12 11 14 15 10" stroke="#5A9B77" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <div>
+          <div class="font-display text-fern-deep font-bold text-lg leading-none">Licensed</div>
+          <div class="text-ash text-xs mt-0.5">Licensed &amp; Insured</div>
+        </div>
+      </div>
+
+      <!-- Divider -->
+      <div class="hidden sm:block w-px h-10 bg-fern-mist"></div>
+
+      <!-- Since 2015 -->
+      <div class="flex items-center gap-3">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <rect x="3" y="4" width="18" height="18" rx="2" fill="#5A9B77" opacity="0.15"/>
+          <rect x="3" y="4" width="18" height="18" rx="2" stroke="#5A9B77" stroke-width="1.5"/>
+          <line x1="3" y1="9" x2="21" y2="9" stroke="#5A9B77" stroke-width="1.5"/>
+          <line x1="8" y1="2" x2="8" y2="6" stroke="#5A9B77" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="16" y1="2" x2="16" y2="6" stroke="#5A9B77" stroke-width="1.5" stroke-linecap="round"/>
+          <circle cx="12" cy="15" r="1.5" fill="#5A9B77"/>
+        </svg>
+        <div>
+          <div class="font-display text-fern-deep font-bold text-lg leading-none">Since 2015</div>
+          <div class="text-ash text-xs mt-0.5">Serving the Okanagan</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════
+     SERVICES
+═══════════════════════════════════════════ -->
+<section id="services" class="py-20 md:py-28 bg-cream">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-14 fade-up">
+      <h2 class="font-display text-3xl md:text-4xl font-bold text-fern-deep mb-4" style="letter-spacing: -0.03em;">What We Do</h2>
+      <p class="text-stone/70 text-lg max-w-2xl mx-auto leading-relaxed">From weekly maintenance to full landscape transformations — all at prices that respect your budget.</p>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+
+      <!-- Card: Landscaping -->
+      <article class="service-card bg-parchment rounded-xl p-6 shadow-card fade-up" style="transition-delay: 0.05s;">
+        <div class="w-12 h-12 bg-fern-mist rounded-lg flex items-center justify-center mb-5">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M12 22V12M12 12C12 12 7 9 5 4C9 4 13 7 12 12ZM12 12C12 12 17 9 19 4C15 4 11 7 12 12Z" stroke="#2E6B4F" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M5 22H19" stroke="#2E6B4F" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <h3 class="font-display text-xl font-semibold text-fern-deep mb-2">Landscaping</h3>
+        <p class="text-stone/70 text-sm leading-relaxed">Full landscape design and installation. We build outdoor spaces that look premium and last.</p>
+      </article>
+
+      <!-- Card: Maintenance -->
+      <article class="service-card bg-parchment rounded-xl p-6 shadow-card fade-up" style="transition-delay: 0.10s;">
+        <div class="w-12 h-12 bg-fern-mist rounded-lg flex items-center justify-center mb-5">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <circle cx="12" cy="12" r="3" stroke="#2E6B4F" stroke-width="1.5"/>
+            <path d="M19.07 4.93l-1.41 1.41M5.34 17.66l-1.41 1.41M22 12h-2M4 12H2M19.07 19.07l-1.41-1.41M5.34 6.34L3.93 4.93M12 2v2M12 20v2" stroke="#2E6B4F" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <h3 class="font-display text-xl font-semibold text-fern-deep mb-2">Maintenance</h3>
+        <p class="text-stone/70 text-sm leading-relaxed">Reliable, scheduled maintenance so your yard always looks its best without the hassle.</p>
+      </article>
+
+      <!-- Card: Lawn Care -->
+      <article class="service-card bg-parchment rounded-xl p-6 shadow-card fade-up" style="transition-delay: 0.15s;">
+        <div class="w-12 h-12 bg-fern-mist rounded-lg flex items-center justify-center mb-5">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M3 18h18M7 18V10M12 18V6M17 18V13" stroke="#2E6B4F" stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M7 10C7 10 5 8 5 6C7 6 9 8 7 10Z" fill="#2E6B4F" opacity="0.3" stroke="#2E6B4F" stroke-width="1" stroke-linejoin="round"/>
+            <path d="M12 6C12 6 10 3 10 1C13 1 15 4 12 6Z" fill="#2E6B4F" opacity="0.3" stroke="#2E6B4F" stroke-width="1" stroke-linejoin="round"/>
+            <path d="M17 13C17 13 15 11 15 9C17 9 19 11 17 13Z" fill="#2E6B4F" opacity="0.3" stroke="#2E6B4F" stroke-width="1" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <h3 class="font-display text-xl font-semibold text-fern-deep mb-2">Lawn Care</h3>
+        <p class="text-stone/70 text-sm leading-relaxed">From seeding and fertilizing to mowing and edging — healthy, lush lawns year-round.</p>
+      </article>
+
+      <!-- Card: Spring & Fall Cleanup -->
+      <article class="service-card bg-parchment rounded-xl p-6 shadow-card fade-up" style="transition-delay: 0.20s;">
+        <div class="w-12 h-12 bg-fern-mist rounded-lg flex items-center justify-center mb-5">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M4 20l4-4M20 4l-4 4M4 4l4 4M20 20l-4-4" stroke="#2E6B4F" stroke-width="1.5" stroke-linecap="round"/>
+            <rect x="9" y="9" width="6" height="6" rx="1" stroke="#2E6B4F" stroke-width="1.5" fill="#2E6B4F" opacity="0.15"/>
+          </svg>
+        </div>
+        <h3 class="font-display text-xl font-semibold text-fern-deep mb-2">Spring &amp; Fall Cleanup</h3>
+        <p class="text-stone/70 text-sm leading-relaxed">Seasonal yard cleanups to prepare your property for the season ahead.</p>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════
+     ABOUT
+═══════════════════════════════════════════ -->
+<section id="about" class="py-20 md:py-28 bg-parchment">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+
+      <!-- Image -->
+      <div class="relative rounded-2xl overflow-hidden shadow-card fade-up" style="min-height: 400px;">
+        <img src="brand_assets/619307953_122101721457229836_4529495886184230451_n.jpg" alt="Matthew and the Fractal Fern team working on a landscaping project in Kelowna" class="w-full h-full object-cover" style="min-height: 400px;" />
+        <!-- Gradient overlay -->
+        <div class="absolute inset-0 pointer-events-none" style="background: linear-gradient(to top, rgba(29,58,42,0.55) 0%, transparent 60%); mix-blend-mode: multiply;"></div>
+        <!-- Badge -->
+        <div class="absolute bottom-6 left-6 bg-fern-deep/90 backdrop-blur-sm rounded-xl px-5 py-3">
+          <div class="text-fern-sage text-xs font-medium uppercase tracking-widest mb-0.5">Founded</div>
+          <div class="font-display text-cream text-2xl font-bold">2015</div>
+        </div>
+      </div>
+
+      <!-- Copy -->
+      <div class="fade-up" style="transition-delay: 0.1s;">
+        <div class="inline-flex items-center gap-2 mb-4">
+          <span class="w-6 h-px bg-fern-sage"></span>
+          <span class="text-fern-base text-sm font-medium tracking-widest uppercase">About Fractal Fern</span>
+        </div>
+        <h2 class="font-display text-3xl md:text-4xl font-bold text-fern-deep mb-5" style="letter-spacing: -0.03em;">Premium Results, Honest Pricing</h2>
+        <p class="text-stone/70 leading-relaxed mb-7" style="line-height: 1.75;">
+          Founded in 2015 by Matthew, Fractal Fern Landscape &amp; Design was built on one principle: every yard deserves to look extraordinary — regardless of budget. We combine professional-grade materials and craftsmanship with transparent, fair pricing so homeowners across Kelowna and the Okanagan can enjoy outdoor spaces they're proud of.
+        </p>
+
+        <!-- Differentiators -->
+        <ul class="space-y-3 mb-8">
+          <li class="flex items-start gap-3">
+            <svg class="w-5 h-5 text-fern-sage mt-0.5 shrink-0" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+              <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd"/>
+            </svg>
+            <span class="text-stone/80 leading-relaxed">Budget-friendly without cutting corners</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <svg class="w-5 h-5 text-fern-sage mt-0.5 shrink-0" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+              <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd"/>
+            </svg>
+            <span class="text-stone/80 leading-relaxed">Hardworking, courteous team — always respectful of your property</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <svg class="w-5 h-5 text-fern-sage mt-0.5 shrink-0" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+              <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd"/>
+            </svg>
+            <span class="text-stone/80 leading-relaxed">Excellent communication from quote to final cleanup</span>
+          </li>
+        </ul>
+
+        <a href="tel:2367006294" class="inline-flex items-center gap-2 min-h-[44px] px-6 py-3 bg-fern-deep text-cream font-medium rounded-lg hover:bg-fern-base hover:-translate-y-0.5 duration-200 shadow-card" style="transition: background-color 0.2s ease, transform 0.2s ease;">
+          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.01 1.18 2 2 0 012 .01h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/>
+          </svg>
+          Call Matthew — (236) 700-6294
+        </a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════
+     SERVICE AREAS
+═══════════════════════════════════════════ -->
+<section id="areas" class="py-20 md:py-28 bg-cream">
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-10 fade-up">
+      <h2 class="font-display text-3xl md:text-4xl font-bold text-fern-deep mb-4" style="letter-spacing: -0.03em;">Where We Work</h2>
+      <p class="text-stone/70 text-lg leading-relaxed">Proudly serving communities across the Okanagan Valley</p>
+    </div>
+
+    <!-- Area pills -->
+    <div class="flex flex-wrap justify-center gap-3 mb-10 fade-up" style="transition-delay: 0.05s;">
+      <span class="inline-flex items-center px-5 py-2 bg-fern-mist text-fern-deep rounded-full text-sm font-medium">Kelowna</span>
+      <span class="inline-flex items-center px-5 py-2 bg-fern-mist text-fern-deep rounded-full text-sm font-medium">Kamloops</span>
+      <span class="inline-flex items-center px-5 py-2 bg-fern-mist text-fern-deep rounded-full text-sm font-medium">Okanagan</span>
+      <span class="inline-flex items-center px-5 py-2 bg-fern-mist text-fern-deep rounded-full text-sm font-medium">Summerland</span>
+      <span class="inline-flex items-center px-5 py-2 bg-fern-mist text-fern-deep rounded-full text-sm font-medium">Naramata</span>
+      <span class="inline-flex items-center px-5 py-2 bg-fern-mist/50 text-fern-base rounded-full text-sm font-medium border border-fern-mist">+ Surrounding Areas</span>
+    </div>
+
+    <!-- Map -->
+    <div class="rounded-2xl overflow-hidden shadow-card fade-up" style="transition-delay: 0.1s; aspect-ratio: 16/9;">
+      <iframe
+        title="Fractal Fern Landscape & Design location — 1890 Cooper Rd, Kelowna, BC"
+        src="https://maps.google.com/maps?q=1890+Cooper+Rd,+Kelowna,+BC&output=embed"
+        width="100%"
+        height="100%"
+        style="border:0; display:block;"
+        allowfullscreen
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════
+     REVIEWS
+═══════════════════════════════════════════ -->
+<section id="reviews" class="py-20 md:py-28 bg-fern-deep">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-14 fade-up">
+      <h2 class="font-display text-3xl md:text-4xl font-bold text-cream mb-3" style="letter-spacing: -0.03em;">What Our Clients Say</h2>
+      <p class="text-fern-mist text-base">5.0 stars across 3 Google reviews</p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+      <!-- Review 1 -->
+      <article class="bg-parchment rounded-xl p-7 shadow-card border-l-4 border-fern-sage fade-up" style="transition-delay: 0.05s;">
+        <div class="font-display text-5xl text-fern-sage leading-none mb-3" aria-hidden="true">&ldquo;</div>
+        <p class="text-stone leading-relaxed mb-5 text-sm md:text-base">Excellent work, great communication and affordable pricing.</p>
+        <!-- Stars -->
+        <div class="flex gap-0.5 mb-3" aria-label="5 out of 5 stars">
+          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="#C8913A" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="#C8913A" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="#C8913A" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="#C8913A" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="#C8913A" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </div>
+        <div class="font-medium text-fern-base text-sm">Naomi Hines</div>
+        <div class="text-ash text-xs mt-0.5">Google Review</div>
+      </article>
+
+      <!-- Review 2 -->
+      <article class="bg-parchment rounded-xl p-7 shadow-card border-l-4 border-fern-sage fade-up" style="transition-delay: 0.10s;">
+        <div class="font-display text-5xl text-fern-sage leading-none mb-3" aria-hidden="true">&ldquo;</div>
+        <p class="text-stone leading-relaxed mb-5 text-sm md:text-base">Matthew and his team are hardworking and courteous professionals.</p>
+        <div class="flex gap-0.5 mb-3" aria-label="5 out of 5 stars">
+          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="#C8913A" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="#C8913A" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="#C8913A" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="#C8913A" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="#C8913A" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </div>
+        <div class="font-medium text-fern-base text-sm">Karen Steinmann</div>
+        <div class="text-ash text-xs mt-0.5">Google Review</div>
+      </article>
+
+      <!-- Review 3 -->
+      <article class="bg-parchment rounded-xl p-7 shadow-card border-l-4 border-fern-sage fade-up" style="transition-delay: 0.15s;">
+        <div class="font-display text-5xl text-fern-sage leading-none mb-3" aria-hidden="true">&ldquo;</div>
+        <p class="text-stone leading-relaxed mb-5 text-sm md:text-base">Want to thank this company for the completion of spring yard clean up.</p>
+        <div class="flex gap-0.5 mb-3" aria-label="5 out of 5 stars">
+          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="#C8913A" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="#C8913A" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="#C8913A" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="#C8913A" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="#C8913A" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </div>
+        <div class="font-medium text-fern-base text-sm">le myers</div>
+        <div class="text-ash text-xs mt-0.5">Google Review</div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════
+     GALLERY
+═══════════════════════════════════════════ -->
+<section id="gallery" class="py-20 md:py-28 bg-parchment">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10 fade-up">
+      <div>
+        <h2 class="font-display text-3xl md:text-4xl font-bold text-fern-deep mb-2" style="letter-spacing: -0.03em;">Our Work</h2>
+        <p class="text-stone/70">A sample of transformations across the Okanagan</p>
+      </div>
+      <a href="https://www.instagram.com/fractalfernlandscapedesign" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-fern-base font-medium hover:text-fern-deep transition-colors duration-200 text-sm whitespace-nowrap">
+        <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+        </svg>
+        @fractalfernlandscapedesign
+        <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+
+    <!-- Masonry grid -->
+    <div class="columns-2 md:columns-3 lg:columns-4 gap-4 fade-up" style="transition-delay: 0.05s;">
+      <div class="gallery-item relative rounded-xl overflow-hidden cursor-pointer">
+        <img src="brand_assets/619524274_122099626185229836_2018465816949927953_n.jpg" alt="Landscaping project in Kelowna" class="w-full block" />
+        <div class="overlay absolute inset-0 bg-fern-sage/70 flex items-center justify-center">
+          <svg class="w-8 h-8 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        </div>
+      </div>
+      <div class="gallery-item relative rounded-xl overflow-hidden cursor-pointer">
+        <img src="brand_assets/616815310_122099621697229836_8161497930555496574_n.jpg" alt="Garden maintenance in the Okanagan" class="w-full block" />
+        <div class="overlay absolute inset-0 bg-fern-sage/70 flex items-center justify-center">
+          <svg class="w-8 h-8 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        </div>
+      </div>
+      <div class="gallery-item relative rounded-xl overflow-hidden cursor-pointer">
+        <img src="brand_assets/621513608_122099626275229836_6965392375078184309_n.jpg" alt="Lawn care service Kelowna" class="w-full block" />
+        <div class="overlay absolute inset-0 bg-fern-sage/70 flex items-center justify-center">
+          <svg class="w-8 h-8 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        </div>
+      </div>
+      <div class="gallery-item relative rounded-xl overflow-hidden cursor-pointer">
+        <img src="brand_assets/621621277_122099626257229836_291266593022594017_n.jpg" alt="Spring yard cleanup" class="w-full block" />
+        <div class="overlay absolute inset-0 bg-fern-sage/70 flex items-center justify-center">
+          <svg class="w-8 h-8 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        </div>
+      </div>
+      <div class="gallery-item relative rounded-xl overflow-hidden cursor-pointer">
+        <img src="brand_assets/656390428_122115563979229836_7124082522416277536_n.jpg" alt="Landscape design Kamloops" class="w-full block" />
+        <div class="overlay absolute inset-0 bg-fern-sage/70 flex items-center justify-center">
+          <svg class="w-8 h-8 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        </div>
+      </div>
+      <div class="gallery-item relative rounded-xl overflow-hidden cursor-pointer">
+        <img src="brand_assets/photo-1734079692087-91bac04efcd1.avif" alt="Outdoor space transformation Summerland" class="w-full block" />
+        <div class="overlay absolute inset-0 bg-fern-sage/70 flex items-center justify-center">
+          <svg class="w-8 h-8 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        </div>
+      </div>
+      <div class="gallery-item relative rounded-xl overflow-hidden cursor-pointer">
+        <img src="brand_assets/photo-1734079692160-fcbe4be6ab96.avif" alt="Garden bed installation Naramata" class="w-full block" />
+        <div class="overlay absolute inset-0 bg-fern-sage/70 flex items-center justify-center">
+          <svg class="w-8 h-8 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        </div>
+      </div>
+      <div class="gallery-item relative rounded-xl overflow-hidden cursor-pointer">
+        <img src="brand_assets/619307953_122101721457229836_4529495886184230451_n.jpg" alt="Fall cleanup service Kelowna" class="w-full block" />
+        <div class="overlay absolute inset-0 bg-fern-sage/70 flex items-center justify-center">
+          <svg class="w-8 h-8 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════
+     CONTACT
+═══════════════════════════════════════════ -->
+<section id="contact" class="py-20 md:py-28 bg-cream">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-12 fade-up">
+      <h2 class="font-display text-3xl md:text-4xl font-bold text-fern-deep mb-4" style="letter-spacing: -0.03em;">Get Your Free Quote</h2>
+      <p class="text-stone/70 text-lg max-w-xl mx-auto leading-relaxed">Tell us about your project and we'll get back to you within 1 business day.</p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-5 gap-10 items-start">
+
+      <!-- Form -->
+      <div class="md:col-span-3 fade-up">
+        <form action="#" class="bg-parchment rounded-2xl p-7 shadow-card space-y-5" novalidate>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+            <div>
+              <label for="name" class="block text-stone text-sm font-medium mb-1.5">Full Name <span class="text-fern-base">*</span></label>
+              <input id="name" name="name" type="text" required autocomplete="name" placeholder="Jane Smith"
+                class="w-full min-h-[44px] bg-cream border border-fern-mist rounded-lg px-4 py-3 text-stone text-sm placeholder-ash focus:outline-none focus:ring-2 focus:ring-fern-sage focus:border-transparent transition-shadow duration-200" />
+            </div>
+            <div>
+              <label for="phone" class="block text-stone text-sm font-medium mb-1.5">Phone</label>
+              <input id="phone" name="phone" type="tel" autocomplete="tel" placeholder="(250) 555-0100"
+                class="w-full min-h-[44px] bg-cream border border-fern-mist rounded-lg px-4 py-3 text-stone text-sm placeholder-ash focus:outline-none focus:ring-2 focus:ring-fern-sage focus:border-transparent transition-shadow duration-200" />
+            </div>
+          </div>
+          <div>
+            <label for="email" class="block text-stone text-sm font-medium mb-1.5">Email <span class="text-fern-base">*</span></label>
+            <input id="email" name="email" type="email" required autocomplete="email" placeholder="jane@example.com"
+              class="w-full min-h-[44px] bg-cream border border-fern-mist rounded-lg px-4 py-3 text-stone text-sm placeholder-ash focus:outline-none focus:ring-2 focus:ring-fern-sage focus:border-transparent transition-shadow duration-200" />
+          </div>
+          <div>
+            <label for="service" class="block text-stone text-sm font-medium mb-1.5">Service Needed</label>
+            <select id="service" name="service"
+              class="w-full min-h-[44px] bg-cream border border-fern-mist rounded-lg px-4 py-3 text-stone text-sm focus:outline-none focus:ring-2 focus:ring-fern-sage focus:border-transparent transition-shadow duration-200 appearance-none">
+              <option value="">Select a service…</option>
+              <option value="landscaping">Landscaping</option>
+              <option value="maintenance">Maintenance</option>
+              <option value="lawn-care">Lawn Care</option>
+              <option value="cleanup">Spring / Fall Cleanup</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+          <div>
+            <label for="message" class="block text-stone text-sm font-medium mb-1.5">Tell Us About Your Project</label>
+            <textarea id="message" name="message" rows="4" placeholder="Describe your yard, what you'd like done, and when…"
+              class="w-full bg-cream border border-fern-mist rounded-lg px-4 py-3 text-stone text-sm placeholder-ash focus:outline-none focus:ring-2 focus:ring-fern-sage focus:border-transparent transition-shadow duration-200 resize-none leading-relaxed"></textarea>
+          </div>
+          <button type="submit" class="w-full inline-flex items-center justify-center min-h-[52px] px-8 py-3 bg-fern-deep text-cream font-medium rounded-lg text-base hover:bg-fern-base hover:-translate-y-0.5 duration-200 shadow-card" style="transition: background-color 0.2s ease, transform 0.2s ease;">
+            Send My Request
+          </button>
+        </form>
+      </div>
+
+      <!-- Contact Info -->
+      <div class="md:col-span-2 fade-up" style="transition-delay: 0.1s;">
+        <div class="space-y-6">
+
+          <div class="flex items-start gap-4">
+            <div class="w-10 h-10 bg-fern-mist rounded-lg flex items-center justify-center shrink-0">
+              <svg class="w-5 h-5 text-fern-base" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.01 1.18 2 2 0 012 .01h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/>
+              </svg>
+            </div>
+            <div>
+              <div class="text-ash text-xs font-medium uppercase tracking-wider mb-1">Phone</div>
+              <a href="tel:2367006294" class="text-fern-deep font-medium hover:text-fern-base transition-colors duration-200">(236) 700-6294</a>
+            </div>
+          </div>
+
+          <div class="flex items-start gap-4">
+            <div class="w-10 h-10 bg-fern-mist rounded-lg flex items-center justify-center shrink-0">
+              <svg class="w-5 h-5 text-fern-base" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/>
+              </svg>
+            </div>
+            <div>
+              <div class="text-ash text-xs font-medium uppercase tracking-wider mb-1">Email</div>
+              <a href="mailto:fractalfernlandscapedesign@hotmail.com" class="text-fern-deep font-medium hover:text-fern-base transition-colors duration-200 break-all text-sm">fractalfernlandscapedesign@hotmail.com</a>
+            </div>
+          </div>
+
+          <div class="flex items-start gap-4">
+            <div class="w-10 h-10 bg-fern-mist rounded-lg flex items-center justify-center shrink-0">
+              <svg class="w-5 h-5 text-fern-base" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/>
+              </svg>
+            </div>
+            <div>
+              <div class="text-ash text-xs font-medium uppercase tracking-wider mb-1">Address</div>
+              <address class="text-fern-deep font-medium not-italic text-sm leading-relaxed">1890 Cooper Rd<br>Kelowna, BC V1Y 8B7</address>
+            </div>
+          </div>
+
+          <div class="flex items-start gap-4">
+            <div class="w-10 h-10 bg-fern-mist rounded-lg flex items-center justify-center shrink-0">
+              <svg class="w-5 h-5 text-fern-base" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+              </svg>
+            </div>
+            <div>
+              <div class="text-ash text-xs font-medium uppercase tracking-wider mb-1">Instagram</div>
+              <a href="https://www.instagram.com/fractalfernlandscapedesign" target="_blank" rel="noopener noreferrer" class="text-fern-deep font-medium hover:text-fern-base transition-colors duration-200 text-sm">@fractalfernlandscapedesign</a>
+            </div>
+          </div>
+
+          <!-- Response time note -->
+          <div class="bg-fern-mist/40 rounded-xl p-4 border border-fern-mist">
+            <p class="text-stone/70 text-sm leading-relaxed">
+              <span class="font-medium text-fern-base">Typically responds within 1 business day.</span> For urgent requests, call or text us directly at (236) 700-6294.
+            </p>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ═══════════════════════════════════════════
+     FOOTER
+═══════════════════════════════════════════ -->
+<footer class="bg-bark pt-14 pb-8">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-10 pb-10 border-b border-white/10">
+
+      <!-- Brand -->
+      <div>
+        <div class="flex items-center gap-2 mb-4">
+          <svg width="24" height="24" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M14 26C14 26 6 18 6 11C6 7.13 9.13 4 13 4C14 4 14 4 14 4C14 4 14 4 15 4C18.87 4 22 7.13 22 11C22 18 14 26 14 26Z" fill="#5A9B77" opacity="0.3"/>
+            <path d="M14 26V8M14 14C14 14 10 11 8 8M14 18C14 18 18 15 20 12" stroke="#5A9B77" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+          <span class="font-display text-cream text-lg font-semibold">Fractal Fern</span>
+        </div>
+        <p class="text-ash text-sm leading-relaxed mb-5">Transform your Outdoors Without Breaking the Bank. Serving Kelowna and the Okanagan since 2015.</p>
+        <a href="https://www.instagram.com/fractalfernlandscapedesign" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-fern-sage hover:text-cream transition-colors duration-200 text-sm">
+          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+          </svg>
+          @fractalfernlandscapedesign
+        </a>
+      </div>
+
+      <!-- Quick Links -->
+      <div>
+        <h3 class="text-cream text-sm font-medium uppercase tracking-widest mb-5">Quick Links</h3>
+        <ul class="space-y-2.5">
+          <li><a href="#services" class="text-ash hover:text-cream transition-colors duration-200 text-sm">Services</a></li>
+          <li><a href="#about" class="text-ash hover:text-cream transition-colors duration-200 text-sm">About</a></li>
+          <li><a href="#areas" class="text-ash hover:text-cream transition-colors duration-200 text-sm">Service Areas</a></li>
+          <li><a href="#reviews" class="text-ash hover:text-cream transition-colors duration-200 text-sm">Reviews</a></li>
+          <li><a href="#contact" class="text-ash hover:text-cream transition-colors duration-200 text-sm">Contact &amp; Quote</a></li>
+        </ul>
+      </div>
+
+      <!-- Contact -->
+      <div>
+        <h3 class="text-cream text-sm font-medium uppercase tracking-widest mb-5">Contact</h3>
+        <ul class="space-y-2.5">
+          <li>
+            <a href="tel:2367006294" class="text-ash hover:text-cream transition-colors duration-200 text-sm flex items-center gap-2">
+              <svg class="w-3.5 h-3.5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.01 1.18 2 2 0 012 .01h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/></svg>
+              (236) 700-6294
+            </a>
+          </li>
+          <li>
+            <a href="mailto:fractalfernlandscapedesign@hotmail.com" class="text-ash hover:text-cream transition-colors duration-200 text-sm flex items-start gap-2">
+              <svg class="w-3.5 h-3.5 shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              <span class="break-all">fractalfernlandscapedesign@hotmail.com</span>
+            </a>
+          </li>
+          <li class="text-ash text-sm flex items-start gap-2">
+            <svg class="w-3.5 h-3.5 shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <span>1890 Cooper Rd, Kelowna, BC V1Y 8B7</span>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+
+    <!-- Bottom bar -->
+    <div class="pt-7 text-center">
+      <p class="text-ash text-xs">© 2026 Fractal Fern Landscape &amp; Design. All rights reserved. Kelowna, BC</p>
+    </div>
+  </div>
+</footer>
+
+
+<!-- ═══════════════════════════════════════════
+     JAVASCRIPT
+═══════════════════════════════════════════ -->
+<script>
+  // ── Mobile Nav Toggle ──────────────────────────────────
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobile-menu');
+  const hb1 = document.getElementById('hb-1');
+  const hb2 = document.getElementById('hb-2');
+  const hb3 = document.getElementById('hb-3');
+
+  function toggleMenu(open) {
+    mobileMenu.classList.toggle('open', open);
+    hamburger.setAttribute('aria-expanded', String(open));
+    if (open) {
+      hb1.style.transform = 'translateY(8px) rotate(45deg)';
+      hb2.style.opacity = '0';
+      hb3.style.transform = 'translateY(-8px) rotate(-45deg)';
+      hamburger.setAttribute('aria-label', 'Close navigation menu');
+    } else {
+      hb1.style.transform = '';
+      hb2.style.opacity = '';
+      hb3.style.transform = '';
+      hamburger.setAttribute('aria-label', 'Open navigation menu');
+    }
+  }
+
+  hamburger.addEventListener('click', () => {
+    const isOpen = mobileMenu.classList.contains('open');
+    toggleMenu(!isOpen);
+  });
+
+  // Close on mobile nav link tap
+  document.querySelectorAll('.mobile-nav-link').forEach(link => {
+    link.addEventListener('click', () => toggleMenu(false));
+  });
+
+  // ── Scroll-triggered Nav Background ────────────────────
+  const navBar = document.getElementById('nav-bar');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 60) {
+      navBar.style.boxShadow = '0 4px 24px rgba(29,58,42,0.25)';
+    } else {
+      navBar.style.boxShadow = 'none';
+    }
+  }, { passive: true });
+
+  // ── IntersectionObserver Fade-Up Animations ─────────────
+  const fadeEls = document.querySelectorAll('.fade-up');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+
+  fadeEls.forEach(el => observer.observe(el));
+
+  // ── Active Nav Link on Scroll ───────────────────────────
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('a[href^="#"]');
+
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(section => {
+      const top = section.offsetTop - 100;
+      if (window.scrollY >= top) current = section.getAttribute('id');
+    });
+    navLinks.forEach(link => {
+      const href = link.getAttribute('href').slice(1);
+      link.style.color = href === current ? '#C4DDD0' : '';
+    });
+  }, { passive: true });
+
+  // ── Prevent form default submit ──────────────────────────
+  document.querySelector('form').addEventListener('submit', (e) => {
+    e.preventDefault();
+    const btn = e.target.querySelector('button[type="submit"]');
+    btn.textContent = 'Request Sent!';
+    btn.disabled = true;
+    btn.style.backgroundColor = '#5A9B77';
+  });
+</script>
+
+</body>
+</html>
