@@ -582,27 +582,35 @@
 
       <!-- Form -->
       <div class="md:col-span-3 fade-up">
-        <form action="#" class="bg-parchment rounded-2xl p-7 shadow-card space-y-5" novalidate>
+        <div data-fs-success class="hidden bg-fern-sage/10 border border-fern-sage text-fern-deep rounded-xl p-5 mb-5 text-sm font-medium">
+          Thanks! We'll be in touch within 1 business day.
+        </div>
+        <div data-fs-error class="hidden bg-red-50 border border-red-300 text-red-700 rounded-xl p-5 mb-5 text-sm font-medium"></div>
+
+        <form id="quote-form" class="bg-parchment rounded-2xl p-7 shadow-card space-y-5">
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
             <div>
               <label for="name" class="block text-stone text-sm font-medium mb-1.5">Full Name <span class="text-fern-base">*</span></label>
-              <input id="name" name="name" type="text" required autocomplete="name" placeholder="Jane Smith"
+              <input id="name" name="name" type="text" required autocomplete="name" placeholder="Jane Smith" data-fs-field
                 class="w-full min-h-[44px] bg-cream border border-fern-mist rounded-lg px-4 py-3 text-stone text-sm placeholder-ash focus:outline-none focus:ring-2 focus:ring-fern-sage focus:border-transparent transition-shadow duration-200" />
+              <span data-fs-error="name" class="text-red-600 text-xs mt-1 block"></span>
             </div>
             <div>
               <label for="phone" class="block text-stone text-sm font-medium mb-1.5">Phone</label>
-              <input id="phone" name="phone" type="tel" autocomplete="tel" placeholder="(250) 555-0100"
+              <input id="phone" name="phone" type="tel" autocomplete="tel" placeholder="(250) 555-0100" data-fs-field
                 class="w-full min-h-[44px] bg-cream border border-fern-mist rounded-lg px-4 py-3 text-stone text-sm placeholder-ash focus:outline-none focus:ring-2 focus:ring-fern-sage focus:border-transparent transition-shadow duration-200" />
+              <span data-fs-error="phone" class="text-red-600 text-xs mt-1 block"></span>
             </div>
           </div>
           <div>
             <label for="email" class="block text-stone text-sm font-medium mb-1.5">Email <span class="text-fern-base">*</span></label>
-            <input id="email" name="email" type="email" required autocomplete="email" placeholder="jane@example.com"
+            <input id="email" name="email" type="email" required autocomplete="email" placeholder="jane@example.com" data-fs-field
               class="w-full min-h-[44px] bg-cream border border-fern-mist rounded-lg px-4 py-3 text-stone text-sm placeholder-ash focus:outline-none focus:ring-2 focus:ring-fern-sage focus:border-transparent transition-shadow duration-200" />
+            <span data-fs-error="email" class="text-red-600 text-xs mt-1 block"></span>
           </div>
           <div>
             <label for="service" class="block text-stone text-sm font-medium mb-1.5">Service Needed</label>
-            <select id="service" name="service"
+            <select id="service" name="service" data-fs-field
               class="w-full min-h-[44px] bg-cream border border-fern-mist rounded-lg px-4 py-3 text-stone text-sm focus:outline-none focus:ring-2 focus:ring-fern-sage focus:border-transparent transition-shadow duration-200 appearance-none">
               <option value="">Select a service…</option>
               <option value="landscaping">Landscaping</option>
@@ -614,10 +622,11 @@
           </div>
           <div>
             <label for="message" class="block text-stone text-sm font-medium mb-1.5">Tell Us About Your Project</label>
-            <textarea id="message" name="message" rows="4" placeholder="Describe your yard, what you'd like done, and when…"
+            <textarea id="message" name="message" rows="4" placeholder="Describe your yard, what you'd like done, and when…" data-fs-field
               class="w-full bg-cream border border-fern-mist rounded-lg px-4 py-3 text-stone text-sm placeholder-ash focus:outline-none focus:ring-2 focus:ring-fern-sage focus:border-transparent transition-shadow duration-200 resize-none leading-relaxed"></textarea>
+            <span data-fs-error="message" class="text-red-600 text-xs mt-1 block"></span>
           </div>
-          <button type="submit" class="w-full inline-flex items-center justify-center min-h-[52px] px-8 py-3 bg-fern-deep text-cream font-medium rounded-lg text-base hover:bg-fern-base hover:-translate-y-0.5 duration-200 shadow-card" style="transition: background-color 0.2s ease, transform 0.2s ease;">
+          <button type="submit" data-fs-submit-btn class="w-full inline-flex items-center justify-center min-h-[52px] px-8 py-3 bg-fern-deep text-cream font-medium rounded-lg text-base hover:bg-fern-base hover:-translate-y-0.5 duration-200 shadow-card disabled:opacity-60 disabled:cursor-not-allowed disabled:transform-none" style="transition: background-color 0.2s ease, transform 0.2s ease;">
             Send My Request
           </button>
         </form>
@@ -837,15 +846,11 @@
     });
   }, { passive: true });
 
-  // ── Prevent form default submit ──────────────────────────
-  document.querySelector('form').addEventListener('submit', (e) => {
-    e.preventDefault();
-    const btn = e.target.querySelector('button[type="submit"]');
-    btn.textContent = 'Request Sent!';
-    btn.disabled = true;
-    btn.style.backgroundColor = '#5A9B77';
-  });
+  // ── Formspree Ajax ──────────────────────────────────────
+  window.formspree = window.formspree || function () { (formspree.q = formspree.q || []).push(arguments); };
+  formspree('initForm', { formElement: '#quote-form', formId: 'xnjlnkzz' });
 </script>
+<script src="https://unpkg.com/@formspree/ajax@1" defer></script>
 
 </body>
 </html>
